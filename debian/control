@@ -1,0 +1,14 @@
+Source: nautilus-gpg-encrypt-extension
+Section: utils
+Priority: optional
+Maintainer: Julian de Almeida Santos <julian.santos.info@gmail.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://github.com/juliansantosinfo/nautilus-gpg-encrypt-extension
+
+Package: nautilus-gpg-encrypt-extension
+Architecture: all
+Depends: ${misc:Depends}, python3-nautilus, python3-gnupg, nautilus
+Description: GPG encryption extension for Nautilus
+ This extension adds a context menu to Nautilus for encrypting and
+ decrypting files using GPG.
