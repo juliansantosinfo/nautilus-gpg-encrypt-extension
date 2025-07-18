@@ -1,3 +1,14 @@
+nautilus-gpg-encrypt-extension (1.0.1-1) noble; urgency=medium
+
+  * Refactored codebase:
+    - Improved code structure and modularization
+    - Removed redundant logic
+    - Updated comments and documentation
+    - Applied PEP8 styling to all Python code
+  * Nova versão automática via Makefile (build local).
+
+ -- Julian de Almeida Santos <julian@linuxpc>  Fri, 18 Jul 2025 09:03:46 -0300
+
 nautilus-gpg-encrypt-extension (1.0.0-1) noble; urgency=medium
 
   * Initial release.
