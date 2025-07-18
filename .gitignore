@@ -11,3 +11,7 @@ env/
 # Arquivos de IDEs
 .idea/
 .vscode/
+
+# Diretórios locais
+.temp/
+.trash/

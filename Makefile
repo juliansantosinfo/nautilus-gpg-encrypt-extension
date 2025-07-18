@@ -26,13 +26,13 @@ build:
 
 install:
 	@echo "Instalando a extensão Nautilus GPG..."
-	sudo install -D -m 755 encrypt_gpg.py /usr/share/nautilus-python/extensions/encrypt_gpg.py
+	install -D -m 755 encrypt_gpg.py /usr/share/nautilus-python/extensions/encrypt_gpg.py
 	@echo "Extensão instalada em /usr/share/nautilus-python/extensions/"
 	@echo "Pode ser necessário reiniciar o Nautilus (nautilus -q) ou sua sessão para que as mudanças surtam efeito."
 
 uninstall:
 	@echo "Removendo a extensão Nautilus GPG..."
-	sudo rm -f /usr/share/nautilus-python/extensions/encrypt_gpg.py
+	rm -f /usr/share/nautilus-python/extensions/encrypt_gpg.py
 	@echo "Extensão removida."
 
 deb: build # Garante que o .orig.tar.gz esteja atualizado
