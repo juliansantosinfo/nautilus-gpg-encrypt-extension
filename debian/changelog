@@ -1,3 +1,9 @@
+nautilus-gpg-encrypt-extension (1.0.2-1) noble; urgency=medium
+
+  * Automatic new version with Makefile.
+
+ -- Julian de Almeida Santos <julian@linuxpc>  Fri, 18 Jul 2025 09:37:44 -0300
+
 nautilus-gpg-encrypt-extension (1.0.1-1) noble; urgency=medium
 
   * Refactored codebase:
@@ -5,7 +11,6 @@ nautilus-gpg-encrypt-extension (1.0.1-1) noble; urgency=medium
     - Removed redundant logic
     - Updated comments and documentation
     - Applied PEP8 styling to all Python code
-  * Nova versão automática via Makefile (build local).
 
  -- Julian de Almeida Santos <julian@linuxpc>  Fri, 18 Jul 2025 09:03:46 -0300
 
