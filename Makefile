@@ -20,7 +20,7 @@ all:
 
 build:
 	@echo "Creating ${PACKAGE_NAME}_${VERSION}.orig.tar.gz..."
-	tar -czvf ../${PACKAGE_NAME}_${VERSION}.orig.tar.gz --exclude='.git' --exclude='debian' .
+	tar -czvf ../${PACKAGE_NAME}_${VERSION}.orig.tar.gz --exclude='.git' --exclude='debian' --exclude='.gitignore'
 	@echo "Source tarball created in ../${PACKAGE_NAME}_${VERSION}.orig.tar.gz"
 	@echo "No code build steps needed for this Python project."
 
