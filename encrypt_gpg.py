@@ -247,7 +247,9 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
 
         try:
             with open(input_path, "rb") as f:
-                decrypted_data = self.gpg.decrypt(f.read(), output=output_path)
+                decrypted_data = self.gpg.decrypt_file(
+                    fileobj_or_path=f, output=output_path
+                )
 
             if decrypted_data.ok:
                 logger.info(
