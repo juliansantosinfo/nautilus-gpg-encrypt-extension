@@ -1,5 +1,5 @@
 PACKAGE_NAME = nautilus-gpg-encrypt-extension
-VERSION = 1.0.3
+VERSION = 1.0.0
 DISTRO = noble 
 
 .PHONY: all build install uninstall deb deb-local clean
@@ -20,7 +20,7 @@ all:
 
 build:
 	@echo "Creating ${PACKAGE_NAME}_${VERSION}.orig.tar.gz..."
-	tar -czvf ../${PACKAGE_NAME}_${VERSION}.orig.tar.gz --exclude='.git' --exclude='debian' --exclude='.gitignore'
+	tar -czvf ../${PACKAGE_NAME}_${VERSION}.orig.tar.gz --exclude='.git' --exclude='debian' .
 	@echo "Source tarball created in ../${PACKAGE_NAME}_${VERSION}.orig.tar.gz"
 	@echo "No code build steps needed for this Python project."
 
@@ -37,18 +37,19 @@ uninstall:
 
 deb: build # Ensures the .orig.tar.gz is up-to-date
 	@echo "Updating debian/changelog and building source package for PPA..."
-	# Creates a new changelog entry. Adding '1' for the initial Debian revision.
 	dch -v $(VERSION)-1 --distribution $(DISTRO) "Automatic new version with Makefile."
-	# -S for source package, -sa to include the .orig.tar.gz (even if it already exists).
 	debuild -S -sa
 	@echo "Source package generated. Check *.dsc, *.orig.tar.gz, *.debian.tar.xz files in the parent directory."
 	@echo "You can now upload to your PPA using 'dput PPA_NAME ../$(PACKAGE_NAME)_$(VERSION)-1_source.changes'"
 
 deb-local: build # Ensures the .orig.tar.gz is up-to-date
 	@echo "Updating debian/changelog and building .deb package locally..."
-	# Creates a new changelog entry. Adding '1' for the initial Debian revision.
 	dch -v $(VERSION)-1 --distribution $(DISTRO) "Automatic new version with Makefile. (local build)."
-	# -b for binary package, -us and -uc to not sign (good for local builds)
+	debuild -b -us -uc
+	@echo "Binary .deb package generated. Check the *.deb file in the parent directory."
+	@echo "You can install locally using 'sudo dpkg -i ../$(PACKAGE_NAME)_$(VERSION)-1_*.deb'"
+
+deb-dev: build # Ensures the .orig.tar.gz is up-to-date
 	debuild -b -us -uc
 	@echo "Binary .deb package generated. Check the *.deb file in the parent directory."
 	@echo "You can install locally using 'sudo dpkg -i ../$(PACKAGE_NAME)_$(VERSION)-1_*.deb'"
@@ -56,8 +57,4 @@ deb-local: build # Ensures the .orig.tar.gz is up-to-date
 clean:
 	@echo "Cleaning temporary and build files..."
 	rm -f ../$(PACKAGE_NAME)_*deb ../$(PACKAGE_NAME)_*changes ../$(PACKAGE_NAME)_*dsc ../$(PACKAGE_NAME)_*buildinfo ../$(PACKAGE_NAME)_*udeb
-	find . -depth -name '*~' -exec rm -f {} \;
-	find . -depth -name '*.pyc' -exec rm -f {} \;
-	find . -depth -name '*.pyo' -exec rm -f {} \;
-	find . -depth -name '__pycache__' -exec rm -rf {} \;
 	@echo "Cleanup complete."
