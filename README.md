@@ -1,31 +1,23 @@
-# Extensão GPG Encrypt para Nautilus
+# GPG Encrypt Extension for Nautilus
 
-Uma extensão simples para o gerenciador de arquivos Nautilus que permite criptografar e descriptografar arquivos usando GPG diretamente do menu de contexto.
+A simple extension for the Nautilus file manager that allows you to encrypt and decrypt files using GPG directly from the context menu.
 
 ![Screenshot](https://i.imgur.com/your-screenshot.png)
 
-## Funcionalidades
+## Features
 
-* Criptografa arquivos com uma chave GPG ou com uma senha (criptografia simétrica).
-* Descriptografa arquivos `.gpg`.
-* Integração direta com o menu de contexto do Nautilus.
+* Encrypt files with a GPG key or a password (symmetric encryption).
+* Decrypt `.gpg` files.
+* Direct integration with Nautilus context menu.
 
 ---
 
-## Instalação (via PPA - Recomendado)
+## Installation (PPA - Recommended)
 
-A forma recomendada de instalar esta extensão no Ubuntu e derivados é via PPA:
+The recommended way to install this extension on Ubuntu and derivatives is via PPA:
 
 ```bash
 sudo add-apt-repository ppa:juliansantosinfo/nautilus-gpg-encrypt-extension
 sudo apt update
 sudo apt install nautilus-gpg-encrypt-extension
 nautilus -q
-```
-
----
-
-## Como Usar
-
-* **Criptografar:** clique com o direito em um arquivo e escolha **GPG Encryption**.
-* **Descriptografar:** clique com o direito em um arquivo `.gpg` e escolha **GPG Decryption**.
