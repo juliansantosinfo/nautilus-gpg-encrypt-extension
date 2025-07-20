@@ -12,4 +12,3 @@ Depends: ${misc:Depends}, python3-nautilus, python3-gnupg, nautilus
 Description: GPG encryption extension for Nautilus
  This extension adds a context menu to Nautilus for encrypting and
  decrypting files using GPG.
- 
