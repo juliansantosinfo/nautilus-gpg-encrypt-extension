@@ -54,6 +54,10 @@ deb-dev: build # Ensures the .orig.tar.gz is up-to-date
 	@echo "Binary .deb package generated. Check the *.deb file in the parent directory."
 	@echo "You can install locally using 'sudo dpkg -i ../$(PACKAGE_NAME)_$(VERSION)-1_*.deb'"
 
+push:
+	@echo "Pushing new package to PPA..."
+	dput ppa:juliansantosinfo/nautilus-gpg-encrypt-extension ../nautilus-gpg-encrypt-extension_$(VERSION)-1_source.changes
+
 clean:
 	@echo "Cleaning temporary and build files..."
 	rm -f ../$(PACKAGE_NAME)_*deb ../$(PACKAGE_NAME)_*changes ../$(PACKAGE_NAME)_*dsc ../$(PACKAGE_NAME)_*buildinfo ../$(PACKAGE_NAME)_*udeb
