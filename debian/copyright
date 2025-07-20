@@ -1,5 +1,7 @@
-Upstream-Name: nautilus-gpg-encrypt-extension
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://github.com/juliansantosinfo/nautilus-gpg-encrypt-extension
+Upstream-Name: nautilus-gpg-encrypt-extension
+Upstream-Contact: Julian de Almeida Santos <julian.santos.info@gmail.com>
 
 Files: *
 Copyright: 2025, Julian de Almeida Santos <julian.santos.info@gmail.com>

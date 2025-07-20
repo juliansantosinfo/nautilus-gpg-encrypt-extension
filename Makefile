@@ -1,5 +1,5 @@
 PACKAGE_NAME = nautilus-gpg-encrypt-extension
-VERSION = 1.0.0
+VERSION = 1.0.4
 DISTRO = noble 
 
 .PHONY: all build install uninstall deb deb-local clean
