@@ -24,11 +24,11 @@ gi.require_version("Gtk", "4.0")
 APP_NAME = "GPGEncryptExtension"
 APP_DESCRIPTION = "Nautilus extension to encrypt and decrypt files using GPG."
 ENCRYPT_DESCRIPTION = (
-    "Encrypts the selected file using the recipient's public GPG key or " "passphrase"
-)
+    "Encrypts the selected file using the recipient's public GPG key or "
+    "passphrase")
 DECRYPT_DESCRIPTION = (
-    "Decrypts the selected file using the recipient's private GPG key or " "passphrase"
-)
+    "Decrypts the selected file using the recipient's private GPG key or "
+    "passphrase")
 
 UBUNTU_KEY_IDENTIFIER = "Created on UBUNTU"
 
@@ -48,8 +48,14 @@ TRANSLATIONS = {
         "With Password": "Com Frase Secreta",
         "GPG Encryption": "Criptografia GPG",
         "GPG Decryption": "Descriptografia GPG",
-        ENCRYPT_DESCRIPTION: "Criptografa o arquivo selecionado usando a chave GPG do destinatário ou senha",
-        DECRYPT_DESCRIPTION: "Descriptografa o arquivo selecionado usando a chave GPG do destinatário ou senha",
+        ENCRYPT_DESCRIPTION: (
+            "Criptografa o arquivo selecionado usando a chave GPG "
+            "do destinatário ou senha"
+        ),
+        DECRYPT_DESCRIPTION: (
+            "Descriptografa o arquivo selecionado usando a chave GPG "
+            "do destinatário ou senha"
+        ),
     },
     "default": {},
 }
@@ -152,7 +158,8 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
 
             if not public_keys:
                 logger.warning(
-                    "No GPG public keys found. Please create one using 'gpg --full-generate-key'."
+                    "No GPG public keys found. Please create one using "
+                    "'gpg --full-generate-key'."
                 )
                 return
 
@@ -161,9 +168,11 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
                     continue
 
                 if key["uids"]:
-                    matches = re.finditer(r"<(.*?)>", key["uids"][0], re.MULTILINE)
+                    matches = re.finditer(
+                        r"<(.*?)>", key["uids"][0], re.MULTILINE)
                     for match in matches:
-                        self.gpg_keys.append((match.group(1), key["fingerprint"]))
+                        self.gpg_keys.append(
+                            (match.group(1), key["fingerprint"]))
 
             logger.info(f"Keys found: {self.gpg_keys}")
 
@@ -189,11 +198,16 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
             passphrase = window_for_password.run()
 
         if gpg_recipient_uid:
-            logger.info(f"Encrypting {file_info.get_name()} for {gpg_recipient_uid}")
+            logger.info(
+                f"Encrypting {
+                    file_info.get_name()} for {gpg_recipient_uid}")
         elif symmetric:
-            logger.info(f"Encrypting {file_info.get_name()} with symmetric method.")
+            logger.info(
+                f"Encrypting {
+                    file_info.get_name()} with symmetric method.")
         else:
-            logger.warning("Not informing recipient UID or password for encryption.")
+            logger.warning(
+                "Not informing recipient UID or password for encryption.")
             return
 
         file_uri = file_info.get_uri()
@@ -211,15 +225,19 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
                 )
             else:
                 encrypted_data = self.gpg.encrypt_file(
-                    input_path, recipients=[gpg_recipient_uid], output=output_path
+                    input_path,
+                    recipients=[gpg_recipient_uid],
+                    output=output_path
                 )
 
             if encrypted_data.ok:
                 logger.info(
-                    f"File encrypted successfully. Status: {encrypted_data.status}"
+                    f"File encrypted successfully. Status: "
+                    f"{encrypted_data.status}"
                 )
                 logger.info(
-                    f"'{file_info.get_name()}' successfully encrypted for '{gpg_recipient_uid}' at '{output_path}'"
+                    f"'{file_info.get_name()}' successfully "
+                    f"encrypted for '{gpg_recipient_uid}' at '{output_path}'"
                 )
             else:
                 error_msg = encrypted_data.stderr or encrypted_data.status
@@ -253,10 +271,11 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
 
             if decrypted_data.ok:
                 logger.info(
-                    f"File decrypted successfully. Status: {decrypted_data.status}"
-                )
+                    f"File decrypted successfully. Status: {
+                        decrypted_data.status}")
                 logger.info(
-                    f"'{file_info.get_name()}' successfully decrypted at '{output_path}'"
+                    f"'{file_info.get_name()}' "
+                    f"successfully decrypted at '{output_path}'"
                 )
             else:
                 error_msg = decrypted_data.stderr or decrypted_data.status
@@ -267,7 +286,8 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
 
-    def get_file_items(self, files: List[Nautilus.FileInfo]) -> List[Nautilus.MenuItem]:
+    def get_file_items(
+            self, files: List[Nautilus.FileInfo]) -> List[Nautilus.MenuItem]:
         """
         Return menu items for selected files in Nautilus.
 
@@ -288,7 +308,7 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
 
         def create_base_menu_item(name, label, tip):
             return Nautilus.MenuItem(
-                name=f"{APP_NAME}::{name}",
+                name=f"{APP_NAME}::{name}",  # noqa: E231
                 label=label,
                 tip=tip,
             )
@@ -314,15 +334,21 @@ class GPGEncryptExtension(GObject.GObject, Nautilus.MenuProvider):
             encrypt_submenu.append_item(encrypt_with_password_menu)
 
             for key_uid, fingerprint in self.gpg_keys:
-                item_name = f"GPGEncryptExtension::Recipient::{key_uid.replace(' ', '_').replace('@', '_')}"
+                item_name = (
+                    f"GPGEncryptExtension::Recipient::"  # noqa: E231
+                    f"{key_uid.replace(' ', '_').replace('@', '_')}"
+                )
                 menu_item = Nautilus.MenuItem(
                     name=item_name,
                     label=f"{key_uid}",
                     tip=f"Encrypt for {key_uid}",
                 )
                 menu_item.connect(
-                    "activate", self.encrypt_file_callback, file, fingerprint, False
-                )
+                    "activate",
+                    self.encrypt_file_callback,
+                    file,
+                    fingerprint,
+                    False)
                 encrypt_submenu.append_item(menu_item)
 
             return encrypt_menu
