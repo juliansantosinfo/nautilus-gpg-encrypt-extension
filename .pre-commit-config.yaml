@@ -20,3 +20,11 @@ repos:
     rev: 6.0.0
     hooks:
       - id: flake8
+  - repo: local
+    hooks:
+      - id: commitizen-check
+        name: Commitizen check commit message
+        entry: cz check --commit-msg-file
+        language: python
+        additional_dependencies: ["commitizen"]
+        stages: [commit-msg]
