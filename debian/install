@@ -1,1 +1,5 @@
 encrypt_gpg.py usr/share/nautilus-python/extensions/
+data/nautilus-gpg-encrypt-extension.desktop usr/share/applications/
+data/nautilus-gpg-encrypt-extension.metainfo.xml usr/share/metainfo/
+data/icons/hicolor/128x128/apps/*.png usr/share/icons/hicolor/128x128/apps/
+data/screenshots/*.png usr/share/doc/nautilus-gpg-encrypt-extension/screenshots/

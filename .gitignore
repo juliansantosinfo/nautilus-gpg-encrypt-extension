@@ -4,14 +4,10 @@ __pycache__/
 *.pyo
 
 # Arquivos de ambiente virtual
-.venv
+.venv/
 venv/
 env/
 
 # Arquivos de IDEs
 .idea/
 .vscode/
-
-# Diretórios locais
-.temp/
-.trash/

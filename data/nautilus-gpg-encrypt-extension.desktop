@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=GPG Encrypt Extension
+Comment=Encrypt and decrypt files using GPG directly from the Nautilus context menu.
+Exec=nautilus -q && nautilus # Se precisar reiniciar o Nautilus, ou deixar em branco
+Icon=nautilus-gpg-encrypt-extension # O nome base do ícone que você configurou
+Terminal=false
+Type=addon
+Categories=GNOME;Utility;FileManager;
+StartupNotify=true
+ID=com.github.juliansantosinfo.nautilus-gpg-encrypt-extension

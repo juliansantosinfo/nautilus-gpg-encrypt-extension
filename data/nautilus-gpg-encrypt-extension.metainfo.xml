@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <extends>org.gnome.Nautilus.desktop</extends>
+  <id>com.github.juliansantosinfo.nautilus-gpg-encrypt-extension</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>GPG Encrypt Extension for Nautilus</name>
+  <summary>Encrypt and decrypt files using GPG directly from Nautilus context menu</summary>
+
+  <description>
+    <p>
+      A simple extension for the Nautilus file manager that allows you to
+      encrypt and decrypt files using GPG directly from the context menu.
+    </p>
+    <p>
+      Features:
+    </p>
+    <ul>
+      <li>Encrypt files with a GPG key or a password (symmetric encryption).</li>
+      <li>Decrypt .gpg files.</li>
+      <li>Direct integration with Nautilus context menu.</li>
+    </ul>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Main screenshot showing the GPG Encryption option in the Nautilus context menu.</caption>
+      <image type="source">https://i.imgur.com/gEGHkQ3.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">https://github.com/juliansantosinfo/nautilus-gpg-encrypt-extension</url>
+  <url type="bugtracker">https://github.com/juliansantosinfo/nautilus-gpg-encrypt-extension/issues</url>
+  <url type="help">https://github.com/juliansantosinfo/nautilus-gpg-encrypt-extension/wiki</url>
+  <url type="vcs-browser">https://github.com/juliansantosinfo/nautilus-gpg-encrypt-extension</url>
+
+  <provides>
+    <binary>nautilus</binary>
+    <id>org.gnome.Nautilus</id>
+  </provides>
+
+  <developer id="info.juliansantos">
+    <name>Julian de Almeida Santos</name>
+    <url>https://github.com/juliansantosinfo</url>
+  </developer>
+
+  <project_group>Utility</project_group>
+</component>
