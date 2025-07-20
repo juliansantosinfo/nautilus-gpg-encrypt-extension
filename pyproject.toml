@@ -1,0 +1,25 @@
+[tool.commitizen]
+name = "cz_custom"
+version = "0.1.0"
+tag_format = "v$version"
+
+[tool.commitizen.customize]
+schema = "<type>- <subject>"
+schema_pattern = "^(feat|fix|docs|test|build|perf|style|refactor|chore|ci|raw|cleanup|remove): .+"
+bump_pattern = "^(feat|fix|perf|refactor)"
+bump_map = {feat = "minor", fix = "patch", perf = "patch", refactor = "patch"}
+
+[tool.commitizen.customize.types]
+feat = "Commit adicionando um novo recurso"
+fix = "Commit corrigindo um bug"
+docs = "Commit alterando documentação"
+test = "Commit alterando ou adicionando testes"
+build = "Commit relacionado a build ou dependências"
+perf = "Commit relacionado a performance"
+style = "Commit de estilo de código, sem alteração funcional"
+refactor = "Commit de refatoração sem mudar funcionalidade"
+chore = "Commit para tarefas administrativas ou manutenção"
+ci = "Commit relacionado à integração contínua"
+raw = "Commit alterando arquivos de configuração/dados"
+cleanup = "Commit limpando código desnecessário"
+remove = "Commit removendo arquivos ou funções obsoletas"
