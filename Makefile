@@ -1,10 +1,11 @@
 PACKAGE_NAME = nautilus-gpg-encrypt-extension
-VERSION = 1.0.4
+VERSION = 1.0.5
 DISTRO = noble
+PPA_NAME = juliansantosinfo/nautilus-gpg-encrypt-extension
 
-.PHONY: all build install uninstall deb deb-local clean
+.PHONY: help build install uninstall deb deb-dev clean
 
-all:
+help:
 	@echo "-----------------------------------------------------"
 	@echo "Welcome to the $(PACKAGE_NAME) Makefile!"
 	@echo "-----------------------------------------------------"
@@ -19,8 +20,10 @@ all:
 	@echo "-----------------------------------------------------"
 
 build:
-	@echo "Creating ${PACKAGE_NAME}_${VERSION}.orig.tar.gz..."
+	@echo "Building source tarball for PPA..."
+	@echo "Creating source tarball..."
 	tar -czvf ../${PACKAGE_NAME}_${VERSION}.orig.tar.gz --exclude='.git' --exclude='debian' --exclude='.venv' .
+	@echo "Creating ${PACKAGE_NAME}_${VERSION}.orig.tar.gz..."
 	@echo "Source tarball created in ../${PACKAGE_NAME}_${VERSION}.orig.tar.gz"
 	@echo "No code build steps needed for this Python project."
 
@@ -36,27 +39,20 @@ uninstall:
 	@echo "Extension removed."
 
 deb: build # Ensures the .orig.tar.gz is up-to-date
-	@echo "Updating debian/changelog and building source package for PPA..."
-	dch -v $(VERSION)-1 --distribution $(DISTRO) "Automatic new version with Makefile."
+	@echo "Building source package for PPA..."
 	debuild -S -sa
 	@echo "Source package generated. Check *.dsc, *.orig.tar.gz, *.debian.tar.xz files in the parent directory."
-	@echo "You can now upload to your PPA using 'dput PPA_NAME ../$(PACKAGE_NAME)_$(VERSION)-1_source.changes'"
+	@echo "You can now upload to your PPA using make push or manually with 'dput ${PPA_NAME} ../$(PACKAGE_NAME)_$(VERSION)-1_source.changes'"
 
-deb-local: build # Ensures the .orig.tar.gz is up-to-date
-	@echo "Updating debian/changelog and building .deb package locally..."
-	dch -v $(VERSION)-1 --distribution $(DISTRO) "Automatic new version with Makefile. (local build)."
-	debuild -b -us -uc
-	@echo "Binary .deb package generated. Check the *.deb file in the parent directory."
-	@echo "You can install locally using 'sudo dpkg -i ../$(PACKAGE_NAME)_$(VERSION)-1_*.deb'"
-
-deb-dev: build # Ensures the .orig.tar.gz is up-to-date
-	debuild -b -us -uc
+dist:
+	@echo "Building binary package for development testing..."
+	debuild -b
 	@echo "Binary .deb package generated. Check the *.deb file in the parent directory."
 	@echo "You can install locally using 'sudo dpkg -i ../$(PACKAGE_NAME)_$(VERSION)-1_*.deb'"
 
 push:
 	@echo "Pushing new package to PPA..."
-	dput ppa:juliansantosinfo/nautilus-gpg-encrypt-extension ../nautilus-gpg-encrypt-extension_$(VERSION)-1_source.changes
+	dput ppa:${PPA_NAME} ../nautilus-gpg-encrypt-extension_$(VERSION)-1_source.changes
 
 clean:
 	@echo "Cleaning temporary and build files..."
