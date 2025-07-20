@@ -2,8 +2,6 @@
 
 A simple extension for the Nautilus file manager that allows you to encrypt and decrypt files using GPG directly from the context menu.
 
-![Screenshot](data/icons/hicolor/128x128/apps/nautilus-gpg-encrypt-extension.png =128x128)
-
 ## Features
 
 * Encrypt files with a GPG key or a password (symmetric encryption).
@@ -29,3 +27,10 @@ nautilus -q
 
 * **Encrypt:** Right-click on a file and select **GPG Encryption**.
 * **Decrypt:** Right-click on a `.gpg` file and select **GPG Decryption**.
+
+---
+
+## Screenshots
+
+![Screenshot](screenshots/screenshot1.gif)
+![Screenshot](screenshots/screenshot2.gif)
