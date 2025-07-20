@@ -12,7 +12,7 @@ A simple extension for the Nautilus file manager that allows you to encrypt and 
 
 ---
 
-## Installation (PPA - Recommended)
+## Installation (via PPA - Recommended)
 
 The recommended way to install this extension on Ubuntu and derivatives is via PPA:
 
@@ -21,3 +21,11 @@ sudo add-apt-repository ppa:juliansantosinfo/nautilus-gpg-encrypt-extension
 sudo apt update
 sudo apt install nautilus-gpg-encrypt-extension
 nautilus -q
+````
+
+---
+
+## How to Use
+
+* **Encrypt:** Right-click on a file and select **GPG Encryption**.
+* **Decrypt:** Right-click on a `.gpg` file and select **GPG Decryption**.
